@@ -212,7 +212,9 @@ END RECENT PAINTINGS LIST
 .brushes button:hover {
   background: #f3f8f8;
 }
-
+.brushes button.selected {
+  background: lightgreen;
+}
 .brushes button:after {
   height: 1px;
   display: block;
@@ -336,4 +338,15 @@ SPIN LOADER BY DEAN SOFFER
   100% {
     transform: rotate(360deg);
   }
+}
+
+.eraser{
+  width:20px;
+  height: 20px;
+  background: transparent;
+  border-radius: 50%;
+  border:2px solid black;
+  position: absolute;
+  z-index: 999;
+  display: none;
 }
