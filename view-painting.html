@@ -34,50 +34,12 @@
 
     </div>
   </div>
-  <main>
-    <div class="top-bar">
+ <main class="text-center m-3">
+   <h1 id="painting_name"></h1>
+   <canvas id="view-painting" class="shadow-lg" width="800" height="600">
 
-      <div id="toolbar"></div>
-      <div id="info">
-
-        <span id="mouse-position">Mouse X: | Mouse Y:</span>
-      </div>
-    </div>
-    <div class="two-cols">
-      <div class="left-block">
-        <div class="colors">
-          <label for="brush-color">Color</label>
-          <input type="color" id="brush-color" name="head" value="#000000">
-        </div>
-        <div class="brushes">
-          Stroke:
-          <button type="button" value="1"></button>
-          <button type="button" value="2"></button>
-          <button type="button" value="3"></button>
-          <button type="button" value="4"></button>
-          <button type="button" value="5"></button>
-        </div>
-        <div class="actions">
-          Erase
-          <button type="button" id="erase" value="erase">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-              <path fill="none" d="M0 0h24v24H0z"/>
-              <path
-                d="M17 6h5v2h-2v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8H2V6h5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3zm1 2H6v12h12V8zm-9 3h2v6H9v-6zm4 0h2v6h-2v-6zM9 4v2h6V4H9z"/>
-            </svg>
-          </button>
-        </div>
-        <div class="buttons">
-          <button id="clear" type="button">Clear</button>
-          <button id="saveToLocalStorage" type="button">Save To localStorge</button>
-          <button id="saveToFile" type="button">Save To file</button>
-        </div>
-      </div>
-      <div class="right-block">
-        <canvas id="paint-canvas" class="shadow-lg" width="800" height="600"></canvas>
-      </div>
-    </div>
-  </main>
+   </canvas>
+ </main>
 </div>
 
 
@@ -94,8 +56,26 @@
 
 <script src="js/main.js"></script>
 <script src="js/painting_class.js"></script>
-<script src="js/paint_page.js"></script>
 
+
+
+<script>
+  $(document).ready(function(){
+    // check if page is on edit mode
+    var viewMode  = localStorage.getItem('viewMode');
+    if(viewMode){
+      $("#painting_name").html(viewMode);
+      localStorage.removeItem('viewMode');
+      showSysMessage(viewMode+ ' Painting View Mode')
+    }
+    else{
+      showSysMessage('No painting selected','error')
+    }
+    let vCanvas = document.getElementById('view-painting');
+    Painting.loadPainting(viewMode,vCanvas,false);
+  })
+
+</script>
 </body>
 
 </html>

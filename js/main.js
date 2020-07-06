@@ -4,6 +4,8 @@
  * Client Side Course
  * used tech in this file: vanilla js(es5), jquery, html canvas api, local storage
  */
+
+
 var editPainting = null;
 window.showSysMessage = function (msg, type = 'success') {
   if (type == 'error') {
@@ -16,6 +18,10 @@ window.showSysMessage = function (msg, type = 'success') {
 }
 
 $(document).ready(function () {
+
+  // hide app loader
+  $('.app-loader').fadeOut('fast');
+
   $('#recent-paintings > div').click(function () {
 
     if ($(this).hasClass('selected')) {
@@ -56,9 +62,12 @@ $(document).ready(function () {
   });
 
   $('#clearAllPaintings').click(function () {
-    Painting.clearAll();
-    Painting.showPaintingList('#recent-paintings');
-    showSysMessage('All Paintings Cleared')
+    if (confirm('Clear All Paintings?')) {
+      Painting.clearAll();
+      Painting.showPaintingList('#recent-paintings');
+      showSysMessage('All Paintings Cleared')
+    }
+
   });
 })
 

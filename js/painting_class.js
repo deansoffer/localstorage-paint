@@ -8,6 +8,7 @@ window.Painting = class Painting {
    * clear all paintings in localstorage
    */
   static clearAll(){
+
     localStorage.clear();
   }
 
@@ -35,16 +36,27 @@ window.Painting = class Painting {
       s.innerHTML = list[i];
 
       // delete Button
-      let b = document.createElement('button');
-      b.innerHTML = "Delete";
-      $(b).attr('data-pid', i);
-      $(b).click(function (e) {
+      let b_delete = document.createElement('button');
+      b_delete.innerHTML = "Delete";
+      $(b_delete).attr('data-pid', i);
+      $(b_delete).addClass('delete-button');
+      $(b_delete).click(function (e) {
         if (confirm('Lo Haval Kaze Yofi Shel Painting?')) {
           let paintingID = e.target.dataset['pid'];
           Painting.removePainting(paintingID);
           Painting.showPaintingList(loadToElementID);
           showSysMessage('Painting Deleted! kama Haval!')
         }
+      })
+
+      // view Button
+      let b_view = document.createElement('button');
+      b_view.innerHTML = "View";
+      $(b_view).attr('data-pid', i);
+      $(b_view).addClass('view-button');
+      $(b_view).click(function (e) {
+        localStorage.setItem('viewMode',list[i]);
+        window.location ='view-painting.html'
       })
 
       // canvas Element
@@ -55,7 +67,8 @@ window.Painting = class Painting {
 
       // append all together
       d.append(s);
-      d.append(b);
+      d.append(b_delete);
+      d.append(b_view);
       d.append(c);
       $(loadToElementID).append(d);
     }
