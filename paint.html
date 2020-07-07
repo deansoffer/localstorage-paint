@@ -27,13 +27,17 @@
   <div class="row">
     <div class="col-12">
       <h1>Paint 1.0 Web Application</h1>
-      <div>
+      <div class="d-xs-none d-sm-none d-md-block">
         <a href="index.html" class="menu-button" style="height: 150px;padding:10px;margin:0;">
           <img src="https://img.icons8.com/cute-clipart/64/000000/home.png" height="50"/>
           Go Back Home
         </a>
       </div>
-
+      <div class="d-xs-block d-sm-block d-md-none">
+        <a href="index.html" class="menu-button" style="height:50px;padding:10px;margin:0;">
+          Go Back Home
+        </a>
+      </div>
     </div>
   </div>
   <main>
@@ -71,7 +75,7 @@
         </div>
         <div class="buttons">
           <button id="clear" type="button">Clear</button>
-          <button id="saveToLocalStorage" type="button">Save To localStorge</button>
+          <button id="saveToLocalStorage" type="button" style="height: 70px">Save To localStorage</button>
           <button id="saveToFile" type="button">Save To file</button>
         </div>
       </div>

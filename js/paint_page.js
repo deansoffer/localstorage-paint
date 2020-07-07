@@ -35,7 +35,7 @@ window.onload = function () {
 
 
 
-    function writeMousePosition(canvas, message, position) {
+    function writeMousePosition(canvas, message) {
         $("#mouse-position").html(message)
     }
 
@@ -52,22 +52,15 @@ window.onload = function () {
 // listen to mouse movement
     canvas.addEventListener('mousemove', function (evt) {
         var mousePos = getMousePos(canvas, evt);
-        var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
+        var message = 'Mouse position <  X: ' + parseInt(mousePos.x) + ' | Y: ' + parseInt(mousePos.y) + ' >';
         writeMousePosition(canvas, message, {x: 10, y: 25});
     }, false);
-
-// listen to mouse movement
-    canvas.addEventListener('mousedown', function (evt) {
-        var mousePos = getMousePos(canvas, evt);
-        var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
-        writeMousePosition(canvas, message, {x: 10, y: 25});
-    }, false);
-
 
 // Handle Mouse Coordinates
-    function setMouseCoordinates(event) {
-        mouseX = event.clientX - boundings.left; // fix element offset
-        mouseY = event.clientY - boundings.top;
+    function setMouseCoordinates(evt) {
+        let mPos = getMousePos(canvas,evt)
+        mouseX = mPos.x;
+        mouseY = mPos.y;
     }
 
     function eraserOn() {
